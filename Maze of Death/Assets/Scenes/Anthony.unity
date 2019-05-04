@@ -173,7 +173,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -214,7 +214,6 @@ GameObject:
   - component: {fileID: 668314816}
   - component: {fileID: 668314815}
   - component: {fileID: 668314818}
-  - component: {fileID: 668314817}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -249,21 +248,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!19719996 &668314817
-TilemapCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 668314814}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 17eaa12cd98068e4dbf9ab22258a4c71, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_MaximumTileChangeCount: 1000
 --- !u!1839735485 &668314818
 Tilemap:
   m_ObjectHideFlags: 0
@@ -333,6 +317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6feb1ff4b7062c4fbe8fa98819e71ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedModifier: 5
 --- !u!58 &849597307
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -348,7 +333,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.32
+  m_Radius: 0.45
 --- !u!212 &849597308
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -419,7 +404,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 849597305}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -474,8 +459,8 @@ TilemapCollider2D:
   m_GameObject: {fileID: 1578576498}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 17eaa12cd98068e4dbf9ab22258a4c71, type: 2}
-  m_IsTrigger: 0
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
