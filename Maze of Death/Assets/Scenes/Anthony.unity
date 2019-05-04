@@ -317,7 +317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6feb1ff4b7062c4fbe8fa98819e71ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedModifier: 5
+  speedModifier: 0.1
 --- !u!58 &849597307
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -333,7 +333,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.45
+  m_Radius: 0.33
 --- !u!212 &849597308
 SpriteRenderer:
   m_ObjectHideFlags: 0

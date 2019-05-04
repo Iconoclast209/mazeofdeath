@@ -4,38 +4,44 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    #region FIELDS
     [SerializeField]
-    float speedModifier = 4f;
+    float speedModifier = 0.1f;
     Rigidbody2D rb2d;
-    Vector2 currentPosition;
+    Vector2 moveDestination = new Vector2(0,0);
+    #endregion
 
+    #region METHODS
     // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        currentPosition = new Vector2(transform.position.x, transform.position.y);
+        moveDestination = new Vector2(transform.position.x, transform.position.y);
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        currentPosition = new Vector2(transform.position.x, transform.position.y);
-        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        Vector2 p = Vector2.MoveTowards(transform.position, moveDestination, speedModifier);
+        rb2d.MovePosition(p);
+
+        if ((Vector2)transform.position == moveDestination)
         {
-            //Determine where the player is going to move to
-            Vector2 newPosition = new Vector2(currentPosition.x + (Input.GetAxis("Horizontal") * speedModifier * Time.deltaTime),
-                currentPosition.y + (Input.GetAxis("Vertical") * speedModifier * Time.deltaTime));
-            //Then move the player
-            rb2d.MovePosition(newPosition);
-            Debug.Log("Player has moved.");
+            if (Input.GetAxis("Vertical") > 0 && ValidMovementDirection(Vector2.up))
+                moveDestination = (Vector2)transform.position + Vector2.up;
+            if (Input.GetAxis("Horizontal") > 0 && ValidMovementDirection(Vector2.right))
+                moveDestination = (Vector2)transform.position + Vector2.right;
+            if (Input.GetAxis("Vertical") < 0 && ValidMovementDirection(Vector2.down))
+                moveDestination = (Vector2)transform.position - Vector2.up;
+            if (Input.GetAxis("Horizontal") < 0 && ValidMovementDirection(Vector2.left))
+                moveDestination = (Vector2)transform.position - Vector2.right;
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    bool ValidMovementDirection(Vector2 dir)
     {
-        Debug.Log("Player has entered the tilemap collider.");
-        //If the player enters the tilemap collider, then nudge position back to former position.
-        rb2d.MovePosition(currentPosition);
+        Vector2 currentPosition = new Vector2(transform.position.x, transform.position.y);
+        RaycastHit2D hit = Physics2D.Linecast(currentPosition + dir, currentPosition);
+        return (hit.collider == GetComponent<Collider2D>());
     }
-
+    #endregion
 }
